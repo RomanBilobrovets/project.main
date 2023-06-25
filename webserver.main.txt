@@ -1,0 +1,65 @@
+provider "aws" {
+  access_key = "AKIAXR7GUCKRZYFPZ4F4"
+  secret_key = "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"
+  region = "eu-central-1"
+}
+
+resource "aws_vpc" "my_vpc" {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Name = "My VPC"
+  }
+}
+
+resource "aws_subnet" "my_subnet" {
+  vpc_id                  = aws_vpc.my_vpc.id
+  cidr_block              = "10.0.0.0/24"
+  availability_zone       = "eu-central-1a"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "My Subnet"
+  }
+}
+
+resource "aws_instance" "my_webserver" {
+  ami                    = "ami-04e601abe3e1a910f"
+  instance_type          = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.my_webserver.id]
+  user_data = <<-EOF
+    #!/bin/bash
+    yum -y update
+    yum -y install httpd
+    myip=`curl http://169.254.169.254/latest/meta-data/local-ipv4`
+    echo "<h2>Webserver with IP: $myip</h2><br>Build by Terraform!" > /var/www/html/index.html
+    sudo service httpd start
+    chkconfig httpd on
+    EOF
+}
+
+resource "aws_security_group" "my_webserver" {
+  name        = "Webserver Security Group"
+  description = "My First SecurityGroup"
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
