@@ -1,8 +1,5 @@
 
-provider "aws" {
-    region = "eu-west-3"
-}
-
+provider "aws"{}
 
 resource "aws_instance" "my_webserver" {
     ami                = "ami-05b5a865c3579bbc4"
