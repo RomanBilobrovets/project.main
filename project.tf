@@ -1,8 +1,4 @@
-provider "aws" {
-  access_key = "AKIAXR7GUCKR7W5GHQUW"
-  secret_key = "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"
-  region     = "eu-central-1"
-}
+provider "aws" {}
 
 resource "aws_vpc" "my_vpc" {
   cidr_block = "10.0.0.0/16"
@@ -13,11 +9,11 @@ resource "aws_vpc" "my_vpc" {
 }
 
 resource "aws_subnet" "my_subnet" {
-  vpc_id                          = aws_vpc.my_vpc.id
-  cidr_block                      = "10.0.0.0/24"
-  availability_zone               = "eu-central-1a"
-  map_public_ip_on_launch         = true
-  
+  vpc_id                  = aws_vpc.my_vpc.id
+  cidr_block              = "10.0.0.0/24"
+  availability_zone       = "eu-central-1a"
+  map_public_ip_on_launch = true
+
   tags = {
     Name = "My Subnet"
   }
@@ -54,7 +50,7 @@ resource "aws_instance" "my_webserver" {
   instance_type               = "t2.micro"
   vpc_security_group_ids      = [aws_security_group.my_webserver.id]
   associate_public_ip_address = true
-  
+
   provisioner "local-exec" {
     command = <<EOF
       sudo apt-get update
@@ -64,7 +60,7 @@ resource "aws_instance" "my_webserver" {
       ansible-playbook -i "${aws_instance.my_webserver.*.public_ip}," -u ubuntu playbook.yml
     EOF
   }
-  
+
   user_data = <<-EOF
     #!/bin/bash
     sudo apt-get update
