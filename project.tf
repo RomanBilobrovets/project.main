@@ -45,21 +45,11 @@ resource "aws_internet_gateway" "my_internet_gateway" {
   }
 }
 resource "aws_instance" "my_webserver" {
-  count                       = 3
+  count                       = 1
   ami                         = "ami-04e601abe3e1a910f"
   instance_type               = "t2.micro"
   vpc_security_group_ids      = [aws_security_group.my_webserver.id]
   associate_public_ip_address = true
-
-  provisioner "local-exec" {
-    command = <<EOF
-      sudo apt-get update
-      sudo apt-get install -y ansible
-
-      # Run Ansible playbook
-      ansible-playbook -i "${aws_instance.my_webserver.*.public_ip}," -u ubuntu playbook.yml
-    EOF
-  }
 
   user_data = <<-EOF
     #!/bin/bash
