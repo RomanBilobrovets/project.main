@@ -1,8 +1,4 @@
-provider "aws" {
-  access_key = "AKIAXR7GUCKR7W5GHQUW"
-  secret_key = "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"
-  region     = "eu-central-1"
-}
+provider "aws" {}
 
 resource "aws_vpc" "my_vpc" {
   cidr_block = "10.0.0.0/16"
