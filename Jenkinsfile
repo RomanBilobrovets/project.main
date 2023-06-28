@@ -4,7 +4,7 @@ pipeline {
     agent {
         label 'master'
     }
-}
+
 
 stages {
     stage('first stage'){
@@ -20,4 +20,5 @@ post {
     always {
         cleanWs()
     }
+}
 }
