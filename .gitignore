@@ -2,3 +2,9 @@
 terraform.tfstate
 terraform.tfstate.backup
 .terraform
+1
+1.pub
+jenkins
+public.crt
+1234567
+1234567.pub

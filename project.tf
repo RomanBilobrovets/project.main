@@ -50,25 +50,7 @@ resource "aws_instance" "my_webserver" {
   instance_type               = "t2.micro"
   vpc_security_group_ids      = [aws_security_group.my_webserver.id]
   associate_public_ip_address = true
-
-  user_data = <<-EOF
-    #!/bin/bash
-    sudo apt-get update
-    sudo apt-get install -y default-jdk
-    wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-    sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-    sudo apt-get update
-    sudo apt-get install -y jenkins
-
-    # Install Jenkins plugins
-    sudo /usr/local/bin/install-plugins.sh \
-      blueocean \
-      pipeline \
-
-    sudo systemctl start jenkins
-  EOF
 }
-
 resource "aws_security_group" "my_webserver" {
   name        = "Webserver Security Group"
   description = "My First Security Group"
