@@ -30,6 +30,8 @@ stages {
         steps{
             script{
                 echo "hello test"
+                sh "cd /var/lib/jenkins/workspace/terraform"
+                sh "ls"
             }
         }
     }
