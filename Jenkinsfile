@@ -3,6 +3,10 @@
 pipeline {
     agent any
 
+environment {
+    TAG = "first"
+}
+
 parameters {
     choice (name: 'SERVER', choices: ['ec2_dev', 'ec2_test', 'ec2_stage'], description: '''
     Select env for deploy
@@ -14,7 +18,7 @@ stages {
         when { expression { params.SERVER == 'ec2_dev' } }
         steps{
             script{
-                echo "Hello dev"
+                echo "Hello dev ${TAG}"
                 sh "java --version"
                 sh "pwd"
                 sh "curl -f -LI http://google.com"
