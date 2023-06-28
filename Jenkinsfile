@@ -16,8 +16,8 @@ stages {
             script{
                 echo "Hello dev"
                 sh "java --version"
-                sh "python --version"
                 sh "pwd"
+                sh "curl -f -LI http://google.com"
             }
         }
     }
