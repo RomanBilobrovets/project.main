@@ -4,7 +4,7 @@ pipeline {
     agent any
 
 parameters {
-    choice (name: 'SERVER', choices: ['ec2_dev', 'ec2_test', 'ec2_stage'] description: '''
+    choice (name: 'SERVER', choices: ['ec2_dev', 'ec2_test', 'ec2_stage'], description: '''
     Select env for deploy
     ''')
 }
