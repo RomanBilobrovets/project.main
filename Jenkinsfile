@@ -15,6 +15,7 @@ stages {
         steps{
             script{
                 echo "Hello dev"
+                java --version
             }
         }
     }
