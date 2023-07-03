@@ -48,6 +48,7 @@ resource "aws_instance" "my_webserver" {
   count                       = 1
   ami                         = "ami-04e601abe3e1a910f"
   instance_type               = "t2.micro"
+  key_name                    = "key_for_ec2_instance"
   vpc_security_group_ids      = [aws_security_group.my_webserver.id]
   associate_public_ip_address = true
 }
