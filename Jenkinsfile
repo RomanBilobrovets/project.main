@@ -23,7 +23,6 @@ pipeline {
                 ansiblePlaybook(
                     playbook: 'home/ubuntu/ansible/playbook2.yml',
                     inventory: 'home/ubuntu/ansible/hosts.txt',
-                    extras: "-e TAG=${env.TAG}",
                     tags: 'deploy_apache',
                     colorized: true
                 )
