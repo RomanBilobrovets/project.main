@@ -10,7 +10,12 @@ pipeline {
     parameters {
         choice (name: 'SERVER', choices: ['ec2_dev', 'ec2_test', 'ec2_stage'], description: 'Select env for deploy')
     }
-
+    stages {
+        stage('Check Ansible Version') {
+            steps {
+                sh 'ansible-playbook --version'
+            }
+        }
     stages {
         stage('Deploy Role') {
             steps {
@@ -31,4 +36,5 @@ pipeline {
             cleanWs()
         }
     }
+}
 }
