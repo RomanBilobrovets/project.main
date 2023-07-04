@@ -9,4 +9,3 @@ public.crt
 1234567
 1234567.pub
 key_for_ec2_instance.pem
-playbook2.yml

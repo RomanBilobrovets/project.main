@@ -14,6 +14,7 @@ pipeline {
     stages {
         stage('Deploy Role') {
             steps {
+                checkout scm
                 ansiblePlaybook(
                     playbook: 'home/ubuntu/ansible/playbook2.yml',
                     inventory: 'home/ubuntu/ansible/hosts.txt',
