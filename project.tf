@@ -52,7 +52,7 @@ resource "aws_instance" "my_webserver" {
   vpc_security_group_ids      = [aws_security_group.my_webserver.id]
   associate_public_ip_address = true
 }
-resource "aws_instance" "new_webserver" {
+resource "aws_instance" "three_webservers" {
   count                       = 1
   ami                         = "ami-04e601abe3e1a910f"
   instance_type               = "t2.micro"
