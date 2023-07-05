@@ -36,6 +36,7 @@ pipeline {
             }
         }
 
+
         stage('Deploy ec2_test'){
             when { expression { params.SERVER == 'ec2_test' } }
             steps{
