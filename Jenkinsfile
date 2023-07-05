@@ -9,5 +9,10 @@ pipeline { // задаем тон groovy, даем понять что здес�
                 sh 'ansible --version' // выводим версию Ansible, команда sh просто выполнит скрипт из консоли
             }
         }
+        stage('Run Playbook') {
+            steps {
+                sh 'ansible-playbook -i hosts.txt playbook2.yml'
+            }
+        }
     }
 }
