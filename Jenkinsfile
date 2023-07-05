@@ -13,7 +13,7 @@ pipeline { // задаем тон groovy, даем понять что здес�
                 checkout scm
                 ansiblePlaybook(
                     host_key_checking - false
-                    playbook: 'home/ubuntu/ansible/playbook2.yml',
+                    playbook: 'home/ubuntu/ansible/playbook3.yml',
                     inventory: 'home/ubuntu/ansible/hosts.txt',
                     private_key_file = /home/ubuntu/.ssh/ansible_roles.pem
                     remote_user = ubuntu''
