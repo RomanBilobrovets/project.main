@@ -1,17 +1,53 @@
 #!/usr/bin/env groovy
 
-pipeline { // задаем тон groovy, даем понять что здесь у нас шаги пайплайна
-    agent any // если у нас есть какие то jenkins агенты специально для Ansible мы можем их указать здесь, у меня только один агент, поэтому я поставлю any
-   
-    stages { // здесь определяем какие шаги в пайплайне
-        stage('Deploy') { // наш деплой
-            steps { // определяем шаги уже самого стейджа
-                sh 'ansible --version' // выводим версию Ansible, команда sh просто выполнит скрипт из консоли
-                sh 'ansible-playbook -i hosts.txt playbook3.yml'
+pipeline {
+    agent any
+
+environment {
+    TAG = "first"
+}
+
+parameters {
+    choice (name: 'SERVER', choices: ['ec2_dev', 'ec2_test', 'ec2_stage'], description: '''
+    Select env for deploy
+    ''')
+}
+
+stages {
+    stage('Deploy ec2_dev'){
+        when { expression { params.SERVER == 'ec2_dev' } }
+        steps{
+            script{
+                echo "Hello dev ${TAG}"
+                sh "java --version"
+                sh "pwd"
+                sh "curl -f -LI http://google.com"
             }
-
         }
-
     }
+    stage('Deploy ec2_test'){
+        when { expression { params.SERVER == 'ec2_test' } }
+        steps{
+            script{
+                echo "hello test"
+                sh "cd /var/lib/jenkins/workspace/terraform"
+                sh "ls"
+            }
+        }
+    }
+    stage('Deploy ec2_stage'){
+        when { expression { params.SERVER == 'ec2_stage' } }
+        steps{
+            script{
+                echo "hello stage"
+            }
+        }
+    }
+}
 
+post {
+    always {
+        cleanWs()
+    }
+}
 }
