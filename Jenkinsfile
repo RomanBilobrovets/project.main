@@ -11,7 +11,7 @@ pipeline { // задаем тон groovy, даем понять что здес�
         }
         stage('Run Playbook') {
             steps {
-                sh 'ansible-playbook -i hosts.txt playbook2.yml'
+                sh 'ansible-playbook -i hosts.txt playbook3.yml'
             }
         }
     }
