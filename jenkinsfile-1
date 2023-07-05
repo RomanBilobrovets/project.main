@@ -23,9 +23,9 @@ pipeline {
                     sh "curl -f -LI http://google.com"
                     ansiblePlaybook(
                         host_key_checking - false
-                        private_key_file = /home/ubuntu/.ssh/key_for_ec2_instance.pem
-                        playbook = 'var/lib/jenkins/workspace/ansible23/ansible/playbook3.yml',
-                        inventory = 'var/lib/jenkins/workspace/ansible23/ansible/hosts.txt',
+                        private_key_file = "/home/ubuntu/.ssh/key_for_ec2_instance.pem"
+                        playbook = "var/lib/jenkins/workspace/ansible23/ansible/playbook3.yml",
+                        inventory = "var/lib/jenkins/workspace/ansible23/ansible/hosts.txt",
                         remote_user = ubuntu
                         extraVars: [
                             server: 'ec2_dev'
