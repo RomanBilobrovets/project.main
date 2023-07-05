@@ -60,6 +60,10 @@ resource "aws_instance" "new_webserver" {
   vpc_security_group_ids      = [aws_security_group.my_webserver.id]
   associate_public_ip_address = true
 }
+
+resource "aws_ecr_repository" "example" {
+  name = "your_repository_name"
+}
 resource "aws_security_group" "my_webserver" {
   name        = "Webserver Security Group"
   description = "My First Security Group"
