@@ -1,0 +1,53 @@
+#!/usr/bin/env groovy
+pipeline {
+    agent any
+
+    environment {
+        TAG = "first"
+    }
+
+    parameters {
+        choice (name: 'SERVER', choices: ['ec2_dev', 'ec2_test', 'ec2_stage'], description: '''
+        Select env for deploy
+        ''')
+    }
+
+    stages {
+        stage('Deploy ec2_dev'){
+            when { expression { params.SERVER == 'ec2_dev' } }
+            steps{
+                script{
+                    echo "Hello dev ${TAG}"
+                    sh "java --version"
+                    sh "pwd"
+                    sh "curl -f -LI http://google.com"
+                    ansiblePlaybook(
+                        playbook: 'var/lib/jenkins/workspace/ansible23/ansible/playbook3.yml',
+                        inventory: 'var/lib/jenkins/workspace/ansible23/ansible/hosts.txt',
+                        extraVars: [
+                            server: 'ec2_dev'
+                        ]
+                    )
+                }
+            }
+        }
+
+        stage('Deploy ec2_test'){
+            when { expression { params.SERVER == 'ec2_test' } }
+            steps{
+                script{
+                    echo "hello test"
+                    sh "cd /var/lib/jenkins/workspace/terraform"
+                    sh "ls"
+                            server: 'ec2_test'                      
+            }
+        }              
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
+}
+}
