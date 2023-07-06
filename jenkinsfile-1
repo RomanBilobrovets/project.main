@@ -22,6 +22,12 @@ pipeline {
                     sh "pwd"
                     sh "curl -f -LI http://google.com"
                     ansiblePlaybook(
+                        withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins-ssh-key-for-abc', \
+                                             keyFileVariable: 'SSH_KEY_FOR_ABC', \
+                                             passphraseVariable: '', \
+                                             usernameVariable: '')]) {
+  // some block
+}
                         playbook: 'var/lib/jenkins/workspace/ansible23/ansible/playbook3.yml',
                         inventory: 'var/lib/jenkins/workspace/ansible23/ansible/hosts.txt',
                         extraVars: [
