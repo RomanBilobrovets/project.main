@@ -22,8 +22,8 @@ pipeline {
                     sh "curl -f -LI http://google.com"
                 }
 
-                withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'key_for_ec2_instance', \
-                                             keyFileVariable: 'key_for_ec2_instance', \
+                withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'key_for_ansible', \
+                                             keyFileVariable: 'key_for_ansible', \
                                              passphraseVariable: '', \
                                              usernameVariable: '')]) {
                     ansiblePlaybook(
