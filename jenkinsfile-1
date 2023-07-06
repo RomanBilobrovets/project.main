@@ -21,13 +21,13 @@ pipeline {
                     sh "java --version"
                     sh "pwd"
                     sh "curl -f -LI http://google.com"
-                    ansiblePlaybook(
-                        withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins-ssh-key-for-abc', \
+                }
+
+                withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins-ssh-key-for-abc', \
                                              keyFileVariable: 'SSH_KEY_FOR_ABC', \
                                              passphraseVariable: '', \
                                              usernameVariable: '')]) {
-  // some block
-}
+                    ansiblePlaybook(
                         playbook: 'var/lib/jenkins/workspace/ansible23/ansible/playbook3.yml',
                         inventory: 'var/lib/jenkins/workspace/ansible23/ansible/hosts.txt',
                         extraVars: [
@@ -45,15 +45,21 @@ pipeline {
                     echo "hello test"
                     sh "cd /var/lib/jenkins/workspace/terraform"
                     sh "ls"
-                            server: 'ec2_test'                      
+                }
+                ansiblePlaybook(
+                    playbook: 'var/lib/jenkins/workspace/ansible23/ansible/playbook3.yml',
+                    inventory: 'var/lib/jenkins/workspace/ansible23/ansible/hosts.txt',
+                    extraVars: [
+                        server: 'ec2_test'
+                    ]
+                )
             }
-        }              
+        }
+    }
 
     post {
         always {
             cleanWs()
         }
     }
-}
-}
 }
