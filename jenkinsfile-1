@@ -1,4 +1,3 @@
-#!/usr/bin/env groovy
 pipeline {
     agent any
 
@@ -53,6 +52,12 @@ pipeline {
                         server: 'ec2_test'
                     ]
                 )
+            }
+        }
+
+        stage('Ansible Playbook'){
+            steps{
+                sh 'ansible-playbook -vvvvv -i environments/teal_${ENVIRONMENT} playbooks/yourplaybook.yml -e --vault-password-file ./.vault_pass.txt'
             }
         }
     }
