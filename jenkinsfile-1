@@ -28,7 +28,6 @@ pipeline {
                                              usernameVariable: '')]) {
   // some block
 }
-                        private_key_file = "/home/ubuntu/.ssh/ansible_roles.pem"
                         playbook: 'var/lib/jenkins/workspace/ansible23/ansible/playbook3.yml',
                         inventory: 'var/lib/jenkins/workspace/ansible23/ansible/hosts.txt',
                         extraVars: [
