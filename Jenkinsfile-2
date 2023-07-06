@@ -4,6 +4,7 @@ pipeline { // задаем тон groovy, даем понять что здес�
     agent any // если у нас есть какие то jenkins агенты специально для Ansible мы можем их указать здесь, у меня только один агент, поэтому я поставлю any
    
     environment {
+        ANS_PATH = "/var/lib/jenkins/workspace/jenkinsfile-2/ansible"
         ANS_KEY = credentials("ansible_key")
     }
     stages { // здесь определяем какие шаги в пайплайне
@@ -15,7 +16,7 @@ pipeline { // задаем тон groovy, даем понять что здес�
                 sh 'ls ansible'
                 sh 'echo ${ANS_KEY} > ./ansible/vault_pass.txt'
                 sh 'cd ansible'
-                sh 'ansible-playbook /var/lib/jenkins/workspace/jenkinsfile-2/ansible/playbook3.yml --vault-password-file /var/lib/jenkins/workspace/jenkinsfile-2/ansible/vault_pass.txt'
+                sh 'ansible-playbook -vvvvv -i ${ANS_PATH}/hosts ${ANS_PATH}/playbook3.yml --vault-password-file ${ANS_PATH}/vault_pass.txt'
                 // sh ('ansible-playbook -vvvvv -i environments/teal_${ENVIRONMENT} playbooks/yourplaybook.yml -e  --vault-password-file ./.vault_pass.txt')
                 }
             }
