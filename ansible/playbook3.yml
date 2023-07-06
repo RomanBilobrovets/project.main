@@ -1,8 +1,10 @@
 ---
 - name: Install default Apache Web Server
-  hosts: all
+  hosts: "server1"
+  remote_user: ubuntu
+  tags: server1
   become: yes
 
   roles:
-    - { role: deploy_apache, when: ansible_system == 'Linux' }
+    - deploy_apache
 
