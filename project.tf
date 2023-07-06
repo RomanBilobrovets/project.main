@@ -59,6 +59,9 @@ resource "aws_instance" "new_webserver" {
   key_name                    = "ansible_roles"
   vpc_security_group_ids      = [aws_security_group.my_webserver.id]
   associate_public_ip_address = true
+  tags = {
+    Name = "Server1"
+  }
 }
 
 resource "aws_ecr_repository" "example" {
