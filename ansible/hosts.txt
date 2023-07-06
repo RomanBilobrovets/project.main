@@ -1,2 +1,2 @@
 [my_inventory_group]
-server1   ansible_host=18.185.52.116         ansible_user=ubuntu   ansible_ssh_private_key_file=/home/ubuntu/.ssh/ansible_roles.pem
+server1   ansible_host=18.185.52.116         ansible_user=ubuntu   ansible_ssh_private_key_file=vault_pass.txt
