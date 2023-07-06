@@ -23,8 +23,8 @@ pipeline {
                     sh "curl -f -LI http://google.com"
                 }
 
-                withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins-ssh-key-for-abc', \
-                                             keyFileVariable: 'SSH_KEY_FOR_ABC', \
+                withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'key_for_ec2_instance', \
+                                             keyFileVariable: 'key_for_ec2_instance', \
                                              passphraseVariable: '', \
                                              usernameVariable: '')]) {
                     ansiblePlaybook(
