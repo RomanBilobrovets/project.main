@@ -1,6 +1,12 @@
 pipeline {
     agent any
-   
+    
+   stage('Print Workspace') {
+    steps {
+        sh 'pwd'
+    }
+}
+
     stages {
         stage('Deploy') {
             steps {
