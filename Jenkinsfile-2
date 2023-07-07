@@ -20,6 +20,7 @@ pipeline { // задаем тон groovy, даем понять что здес�
                 // sh 'ssh-keygen -R server1'
                 sh 'echo "$USER"'
                 sh 'whoami'
+                sh 'cat hosts'
                 sh 'export ANSIBLE_HOST_KEY_CHECKING=False'
                 sh 'ansible-playbook -i ${ANS_PATH}/hosts ${ANS_PATH}/playbook3.yml'
                 // sh ('ansible-playbook -vvvvv -i environments/teal_${ENVIRONMENT} playbooks/yourplaybook.yml -e  --vault-password-file ./.vault_pass.txt')
