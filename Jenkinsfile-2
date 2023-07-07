@@ -19,7 +19,6 @@ pipeline { // задаем тон groovy, даем понять что здес�
                 sh 'cd ansible'
                 sh 'echo "$USER"'
                 sh 'whoami'
-                sh 'ls /home/ubuntu/.ssh/'
                 sh 'ansible-playbook -i ${ANS_PATH}/hosts ${ANS_PATH}/playbook3.yml'
                 // sh ('ansible-playbook -vvvvv -i environments/teal_${ENVIRONMENT} playbooks/yourplaybook.yml -e  --vault-password-file ./.vault_pass.txt')
                 }
