@@ -7,6 +7,11 @@ pipeline { // задаем тон groovy, даем понять что здес�
         ANS_PATH = "/var/lib/jenkins/workspace/jenkinsfile-2/ansible"
         ANS_KEY = credentials("ansible_key")
     }
+      stage("Git Checkout"){
+        steps{
+          sh 'git clone <https://github.com/RomanBilobrovets/project.main.git>'
+        }
+      }
     stages { // здесь определяем какие шаги в пайплайне
         stage('Deploy') { // наш деплой
             steps { // определяем шаги уже самого стейджа
