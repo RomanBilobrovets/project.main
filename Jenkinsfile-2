@@ -7,7 +7,7 @@ pipeline { // задаем тон groovy, даем понять что здес�
         stage('Deploy') { // наш деплой
             steps { // определяем шаги уже самого стейджа
                 sh 'ansible --version' // выводим версию Ansible, команда sh просто выполнит скрипт из консоли
-                sh 'ansible-playbook playbook3.yml --vault-password- file vault_pass.yml'
+                sh 'ansible-playbook playbook3.yml --vault-password- file cred.yml'
 
                 // sh ('ansible-playbook -vvvvv -i environments/teal_${ENVIRONMENT} playbooks/yourplaybook.yml -e  --vault-password-file ./.vault_pass.txt')
                 }
