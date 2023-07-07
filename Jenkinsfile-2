@@ -7,6 +7,13 @@ pipeline { // задаем тон groovy, даем понять что здес�
         ANS_PATH = "/home/ubuntu/ansible"
     }
     stages { // здесь определяем какие шаги в пайплайне
+        stage("Git Checkout"){
+            steps {
+                sh 'git clone https://github.com/RomanBilobrovets/project.main.git'
+        }
+      }
+        
+        
         stage('Deploy') { // наш деплой
             steps { // определяем шаги уже самого стейджа
                 sh 'ansible --version' // выводим версию Ansible, команда sh просто выполнит скрипт из консоли
