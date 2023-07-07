@@ -5,7 +5,6 @@ pipeline { // задаем тон groovy, даем понять что здес�
    
     environment {
         ANS_PATH = "/home/ubuntu/ansible"
-        ANS_KEY = credentials("ansible_key")
     }
     stages { // здесь определяем какие шаги в пайплайне
         stage('Deploy') { // наш деплой
