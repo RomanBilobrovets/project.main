@@ -9,7 +9,7 @@ pipeline { // задаем тон groovy, даем понять что здес�
     stages { // здесь определяем какие шаги в пайплайне
         stage("Git Checkout"){
             steps {
-                sh 'git clone git@github.com:RomanBilobrovets/project.main.git'
+                sh 'https://github.com/RomanBilobrovets/project.main.git'
         }
       }
         
