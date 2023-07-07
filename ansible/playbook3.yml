@@ -1,6 +1,6 @@
 ---
 - name: Install default Apache Web Server
-  hosts: "server1"
+  hosts: all
   remote_user: ubuntu
   tags: server1
   become: yes
