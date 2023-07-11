@@ -3,7 +3,7 @@
 pipeline { 
     agent any
      environment {
-         ANS_PATH = "/var/lib/jenkins/workspace/jenkinsfile-2/ansible"
+         ANS_PATH = "/var/lib/jenkins/workspace/Docker/Jenkinsfile-Docker"
          ANS_KEY = credentials("ansible_key")
     }
     stages {
