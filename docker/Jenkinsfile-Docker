@@ -2,15 +2,13 @@
 
 pipeline { 
     agent any
-
-    stages {
-        stage('Clone repository') {
-            steps {
-                git 'https://github.com/your-username/your-nodejs-app.git'
-            }
-        }
         stage('Build and Push Image') {
-             steps { 
+            steps { 
+                WithCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+                credentialsId: 'ansible_roles',
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+                    script {
                 sh 'docker build -t your_repository_name .'
                 sh 'docker tag'
                 sh 'docker push'
