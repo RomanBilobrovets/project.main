@@ -10,12 +10,12 @@ pipeline {
             }
         }
         stage('Build and Push Image') {
-            steps { 
-            sh 'docker build -t roman'
-            sh 'docker tag'
-            sh 'docker push'
-            sh 'cd docker'
-            sh 'docker run -p 49160:8080 -d roman/node-web-app'
+             steps { 
+                sh 'docker build -t roman'
+                sh 'docker tag'
+                sh 'docker push'
+                sh 'cd docker'
+                sh 'docker run -p 49160:8080 -d roman/node-web-app'
             }
         }
         }
