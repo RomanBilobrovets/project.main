@@ -64,8 +64,8 @@ resource "aws_instance" "new_webserver" {
   }
 }
 
-resource "aws_ecr_repository" "example" {
-  name = "your_repository_name"
+resource "aws_ecr_repository" "ecr" {
+  name = "aws_ecr"
 }
 resource "aws_security_group" "my_webserver" {
   name        = "Webserver Security Group"
