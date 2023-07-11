@@ -9,10 +9,12 @@ pipeline {
     stages {
         stage('Build and Push Image') {
             steps { 
+                sh ''
                 sh 'docker --version'
                 sh 'ls'
                 sh 'pwd'
                 sh 'cd docker'
+                sh 'docker build -t your_repository_name .'
             }
         }
      }
