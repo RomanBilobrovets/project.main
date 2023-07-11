@@ -9,7 +9,10 @@ pipeline {
     stages {
         stage('Build and Push Image') {
             steps { 
+                sh 'aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 519637832355.dkr.ecr.eu-central-1.amazonaws.com'
                 sh 'docker build -t your_repository_name .'
+                sh 'docker tag your_repository_name:latest 519637832355.dkr.ecr.eu-central-1.amazonaws.com/your_repository_name:latest'
+                sh 'docker push 519637832355.dkr.ecr.eu-central-1.amazonaws.com/your_repository_name:latest'
                 sh 'docker tag'
                 sh 'docker push'
                 sh 'cd docker'
