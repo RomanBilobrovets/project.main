@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Build and Push Image') {
             steps { 
-                sh 'ansible --version'
+                sh 'docker --version'
             }
         }
      }
