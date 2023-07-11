@@ -11,6 +11,7 @@ pipeline {
             steps { 
                 sh 'docker --version'
                 sh 'cd docker'
+                sh 'sudo usermod -a -G docker jenkins'
                 sh 'docker run -p 49160:8080 -d roman/node-web-app'
             }
         }
