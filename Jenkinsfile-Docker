@@ -14,7 +14,7 @@ pipeline {
                 sh 'ls'
                 sh 'pwd'
                 sh 'cd docker'
-                sh 'docker build -t your_repository_name .'
+                sh 'docker build -t your_repository_name'
             }
         }
      }
