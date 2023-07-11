@@ -2,6 +2,7 @@
 
 pipeline { 
     agent any
+    stages {
         stage('Build and Push Image') {
             steps { 
                 WithCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
@@ -18,4 +19,5 @@ pipeline {
                 }
             }
         }
+    }
 }
