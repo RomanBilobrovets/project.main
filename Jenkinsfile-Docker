@@ -12,6 +12,7 @@ pipeline {
                 sh 'docker --version'
                 sh 'ls'
                 sh 'pwd'
+                sh 'ls Docker'
             }
         }
      }
