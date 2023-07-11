@@ -1,16 +1,15 @@
 #!/usr/bin/env groovy
 
-pipeline { // задаем тон groovy, даем понять что здесь у нас шаги пайплайна
-    agent any // если у нас есть какие то jenkins агенты специально для Ansible мы можем их указать здесь, у меня только один агент, поэтому я поставлю any
-   
+pipeline { 
+    agent any
     environment {
         ANS_PATH = "/var/lib/jenkins/workspace/jenkinsfile-2/ansible"
         ANS_KEY = credentials("ansible_key")
     }
-    stages { // здесь определяем какие шаги в пайплайне
-        stage('Deploy') { // наш деплой
-            steps { // определяем шаги уже самого стейджа
-                sh 'ansible --version' // выводим версию Ansible, команда sh просто выполнит скрипт из консоли
+    stages {
+        stage('Deploy') {
+            steps { 
+                sh 'ansible --version'
                 sh 'ls'
                 sh 'pwd' 
                 sh 'ls ansible'
