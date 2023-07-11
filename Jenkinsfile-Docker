@@ -5,19 +5,15 @@ pipeline {
     environment {
         ANS_PATH = "/var/lib/jenkins/workspace/Docker/Jenkinsfile-Docker"
         ANS_KEY = credentials("ansible_key")
-    stages {
+    }
         stage('Build and Push Image') {
             steps { 
-                WithCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                credentialsId: 'ansible_roles',
-                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
-                    script {
+                sh 'docker build -t your_repository_name .'
+                sh 'docker tag'
+                sh 'docker push'
+                sh 'cd docker'
                 sh 'docker run -p 49160:8080 -d roman/node-web-app'
             }
-                }
-            }
-            }
+                
         }
-    }
 }
