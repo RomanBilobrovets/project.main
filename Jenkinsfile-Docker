@@ -6,6 +6,7 @@ pipeline {
         ANS_PATH = "/var/lib/jenkins/workspace/Docker/Jenkinsfile-Docker"
         ANS_KEY = credentials("ansible_key")
     }
+    stages {
         stage('Build and Push Image') {
             steps { 
                 sh 'docker build -t your_repository_name .'
@@ -16,4 +17,6 @@ pipeline {
             }
                 
         }
+        }
+
 }
