@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Build and Push Image') {
              steps { 
-                sh 'docker build -t roman'
+                sh 'docker build -t your_repository_name .'
                 sh 'docker tag'
                 sh 'docker push'
                 sh 'cd docker'
