@@ -2,6 +2,9 @@
 
 pipeline { 
     agent any
+    environment {
+        ANS_PATH = "/var/lib/jenkins/workspace/Docker/Jenkinsfile-Docker"
+        ANS_KEY = credentials("ansible_key")
     stages {
         stage('Build and Push Image') {
             steps { 
@@ -13,6 +16,7 @@ pipeline {
                 sh 'docker run -p 49160:8080 -d roman/node-web-app'
             }
                 }
+            }
             }
         }
     }
