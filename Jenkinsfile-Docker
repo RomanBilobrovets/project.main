@@ -6,7 +6,7 @@ pipeline {
         stage('Build and Push Image') {
             steps { 
                 WithCredentials([[$class: 'AmazonWebServicesCredentialsBinding'
-                credentialsId: 'key_for_ec2_instance'
+                credentialsId: 'key_for_ec2_instance.pem'
                 accessKeyVariable: 'AWS_ACCESS_KEY_ID'
                 secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
                     script {
