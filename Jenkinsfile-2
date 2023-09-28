@@ -13,7 +13,7 @@ pipeline {
                 sh 'ls'
                 sh 'pwd' 
                 sh 'ls ansible'
-                // sh 'echo ${ANS_KEY} > ./ansible/ansible_roles.pem'
+                // sh 'echo ${ANS_KEY} > ./ansible/ansible_roles.pem'sss
                 // sh 'chmod 400 ./ansible/ansible_roles.pem'
                 sh 'cd ansible'
                 // sh 'ssh-keygen -R server1'
