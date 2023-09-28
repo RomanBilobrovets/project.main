@@ -1,2 +1,2 @@
 [my_inventory_group]
-server1 ansible_ssh_host=3.120.132.219 ansible_ssh_user=ubuntu ansible_ssh_pass=123
+server1 ansible_ssh_host=18.185.52.116 ansible_ssh_user=ubuntu ansible_ssh_pass=123
